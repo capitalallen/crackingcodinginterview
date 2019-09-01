@@ -33,16 +33,24 @@ class Graph:
         #for i in graph[s]
 
         visited = [False]*len(self.graph)
+        result = []
         queue = []
         queue.append(s)
         visited[s] = True
         while queue:
             s = queue.pop(0)
-            print(s)
+            result.append(s)
             for i in self.graph[s]:
                 if visited[i] == False:
                     queue.append(i)
                     visited[i] = True
+        return result
+    def findRoute(self,u,v):
+        l = self.BFS(u)
+        if u in l and v in l:
+            return True
+        else:
+            return False
 # Create a graph given 
 # in the above diagram
 g = Graph()
@@ -52,5 +60,8 @@ g.addEdge(1, 2)
 g.addEdge(2, 0)
 g.addEdge(2, 3)
 g.addEdge(3, 3)
-g.DFS(2)
-g.BFS(2)
+# g.DFS(2)
+# g.BFS(2)
+a= g.findRoute(1,3)
+b= g.findRoute(1,4)
+print(a,b)

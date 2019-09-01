@@ -151,17 +151,28 @@
 #     #                 break
     
 class Node:
-    def __init__(self, val):
+    def __init__(self, val,left =None,right=None):
         self.val = val
-        self.leftChild = None
-        self.rightChild = None
+        self.leftChild = left
+        self.rightChild = right
     
     def get(self):
         return self.val
     
     def set(self, val):
         self.val = val
-        
+    
+    def __str__(self):
+        string = str(self.val)
+        if self.leftChild:  
+            string += str(self.leftChild)
+        else:          
+            string += ""
+        if self.rightChild: 
+            string += str(self.rightChild)
+        else:          
+            string += ""
+        return string
     def getChildren(self):
         children = []
         if(self.leftChild != None):
