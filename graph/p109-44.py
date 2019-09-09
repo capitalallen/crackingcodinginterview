@@ -6,18 +6,24 @@ class TreeNode(object):
         self.right = None
 
 
-def isBalanced(root):
+class Solution:
+    # @param {TreeNode} root
+    # @return {boolean}
+    def isBalanced(self, root):
     """
     :type root: TreeNode
     :rtype: bool
     """
-    if root == None:
+    if not root:
         return True
-    else:
-        if not root.left or not root.left:
-            return False
-        isBalanced(root.left)
-        isBalanced(root.right)
+    return abs(self.getHeight(root.left)-self.getHeight(root.right))<2 and self.isBalanced(root.right) and self.isBalanced(root.left)
+
+    def getHeight(self,root):
+        if not root:
+            return 0
+        return 1 + max(self.getHeight(root.left),self.getHeight(root.right))
+
+
 node = TreeNode(5)
 node.left = TreeNode(3)
 node.right = TreeNode(6)
